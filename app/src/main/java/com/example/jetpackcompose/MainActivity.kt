@@ -1,53 +1,70 @@
 package com.example.jetpackcompose
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.MaterialTheme
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
+import androidx.compose.foundation.interaction.DragInteraction
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.Button
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.sp
-import com.example.jetpackcompose.ui.theme.JetpackComposeTheme
-import kotlin.coroutines.coroutineContext
+import androidx.compose.ui.unit.dp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Title(text = "Mr Singh")
+            UserCard()
         }
     }
 }
 
 @Composable
-fun Title(text: String) {
-    val context = LocalContext.current
-    Text(
-        text = "Name -> $text",
-        fontSize = 32.sp,
-        color = colorResource(id = R.color.purple_200),
-        fontFamily = FontFamily.Cursive,
-        modifier = Modifier.clickable {
-            Toast.makeText(context, "This is $text , here", Toast.LENGTH_SHORT).show()
-        },
-    )
+fun UserCard() {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentHeight()
+            .padding(12.dp)
+            .border(1.dp, color = Color.Gray)
+            .padding(12.dp)
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.cat),
+            contentDescription = " ",
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .size(150.dp)
+                .clip(CircleShape)
+        )
+        Column {
+            Text(text = stringResource(id = R.string.dummyText),
+            modifier = Modifier.padding(start = 10.dp))
+
+            Button(onClick = { /*TODO*/ },
+            modifier = Modifier.padding(start = 10.dp, top = 10.dp)) {
+                Text(text = "View Profile")
+            }
+
+        }
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     Surface(Modifier.fillMaxSize()) {
-        Title("Mr Singh")
+        UserCard()
     }
 }
