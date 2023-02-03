@@ -9,6 +9,7 @@ import androidx.compose.foundation.interaction.DragInteraction
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Button
+import androidx.compose.material.Card
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -32,35 +33,46 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun UserCard() {
-    Row(
+    Card(
+        elevation = 4.dp,
         modifier = Modifier
+            .padding(12.dp)
             .fillMaxWidth()
             .wrapContentHeight()
-            .padding(12.dp)
-            .border(1.dp, color = Color.Gray)
-            .padding(12.dp)
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.cat),
-            contentDescription = " ",
-            contentScale = ContentScale.Crop,
+        Row(
             modifier = Modifier
-                .size(150.dp)
-                .clip(CircleShape)
-        )
-        Column {
-            Text(text = stringResource(id = R.string.dummyText),
-            modifier = Modifier.padding(start = 10.dp))
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .padding(5.dp)
+                .border(1.dp, color = Color.Gray)
+                .padding(12.dp)
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.cat),
+                contentDescription = " ",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .size(150.dp)
+                    .clip(CircleShape)
+            )
+            Column {
+                Text(
+                    text = stringResource(id = R.string.dummyText),
+                    modifier = Modifier.padding(start = 10.dp)
+                )
 
-            Button(onClick = { /*TODO*/ },
-            modifier = Modifier.padding(start = 10.dp, top = 10.dp)) {
-                Text(text = "View Profile")
+                Button(
+                    onClick = { /*TODO*/ },
+                    modifier = Modifier.padding(start = 10.dp, top = 10.dp)
+                ) {
+                    Text(text = "View Profile")
+                }
+
             }
-
         }
     }
 }
-
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
