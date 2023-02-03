@@ -7,6 +7,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.DragInteraction
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
@@ -35,8 +37,16 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun UserList() {
-    Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+ /*    ****** List View *****
+   Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
         for (i in 1..10) {
+            UserCard()
+        }
+    }   */
+
+    LazyColumn{         // Recycler View
+        items((1..10).toList()  // Here pass your list
+        ){
             UserCard()
         }
     }
@@ -65,7 +75,7 @@ fun UserCard() {
                 contentDescription = " ",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .size(150.dp)
+                    .size(width = 150.dp, height = 180.dp)
                     .clip(CircleShape)
             )
             Column {
@@ -90,6 +100,6 @@ fun UserCard() {
 @Composable
 fun DefaultPreview() {
     Surface(Modifier.fillMaxSize()) {
-        UserCard()
+        UserList()
     }
 }
