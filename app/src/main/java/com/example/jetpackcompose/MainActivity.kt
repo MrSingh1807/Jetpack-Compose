@@ -12,6 +12,5 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .add(R.id.content, BlankFragment())
             .commit()
-
     }
 }
