@@ -22,19 +22,12 @@ class BlankFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
+        // Jetpack Compose are interoperable
         return ComposeView(requireContext()).apply{
            setContent {
-               MainContent()
+
            }
         }
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    Surface(Modifier.fillMaxSize()) {
-        MainContent()
-    }
-}

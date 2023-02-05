@@ -5,7 +5,19 @@
     android:orientation="vertical"
     android:id="@+id/content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/purple_200"
     tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/nameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mr Singh"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:layout_margin="20dp"
+        android:layout_gravity="center" />
 
 </LinearLayout>
