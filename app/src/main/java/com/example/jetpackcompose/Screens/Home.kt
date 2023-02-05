@@ -41,7 +41,7 @@ fun Home(navController: NavController? = null) {
             leadingIcon = {
                 Icon(imageVector = Icons.Default.Search , contentDescription = " " )
             } )
-        Text(text = "My Images",
+        Text(text = "My Items",
             fontSize = 35.sp,
             fontWeight = FontWeight.Bold)
         LazyColumn(
@@ -60,8 +60,8 @@ fun Home(navController: NavController? = null) {
 fun TaskCard(task: String, navController: NavController?,id: Int){
     Card(
         elevation = 4.dp,
-        shape = RoundedCornerShape(10.dp),
-        backgroundColor =  Color.LightGray ,
+        shape = RoundedCornerShape(5.dp),
+        backgroundColor =  Color.White ,
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight()

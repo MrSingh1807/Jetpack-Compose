@@ -1,16 +1,46 @@
 package com.example.jetpackcompose
 
 import Home
-import androidx.compose.foundation.layout.fillMaxSize
+import android.view.View
+import android.widget.TextView
+import android.widget.Toast
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.AndroidView
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+
+@Composable
+fun ComposeWithXML() {
+    Column {
+        AndroidView(
+            factory = {
+                View.inflate(it, R.layout.activity_main, null)
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .padding(10.dp),
+            update = { view ->
+                val name = view.findViewById<TextView>(R.id.nameTV)
+                name.setOnClickListener {
+                    Toast.makeText(view.context, "This is Singh", Toast.LENGTH_SHORT).show()
+                }
+            }
+        )
+        MainContent()
+    }
+}
 
 @Composable
 fun MainContent() {
@@ -20,54 +50,18 @@ fun MainContent() {
     ) {
         NavHost(
             navController = navController,
-            startDestination = "Home",
+            startDestination = NAV_HOME,
             builder = {
-                composable("Home") {
-                    Home(navController)
-                }
-                composable(
-                    "Task/{item}",      // Task "/{item}" -> this is how pass arguments
-                    arguments = listOf(
-                        /* This is how you set DataType
-                         By default Data type is string
-                         */
-
-                        navArgument("item") {
-                            type = NavType.StringType
-                        },
-                   /*      ******   If you have multiple arguments   ******
-                        // for multiple arguments =>   Task "/{item1} /{item2} /{item3} /{item4}"
-                       navArgument("item1") {
-                            type = NavType.BoolType
-                        },
-                        navArgument("item2") {
-                            type = NavType.IntType
-                        },
-                        navArgument("item3") {
-                            type = NavType.IntArrayType
-                     }  */
-
-                    /*
-                    How to pass optional Arguments  -> Task "?item={item}" ->
-                      navArgument("item") {
-                            type = NavType.StringType
-                            either use;
-                            defaultValue = "Item Not available"
-                            or make -> nullable = true
-                        },
-                     */
-                    )
-                ) {
-                    val item = it.arguments?.getString("item")
-                    Task(item = item)
-                }
+                composable(NAV_HOME) { Home(navController) }
+                composable("Task/{item}") { Task(navController) }
             }
         )
     }
 }
 
+
 @Preview
 @Composable
 fun PreviewMainContent() {
-    MainContent()
+    ComposeWithXML()
 }
