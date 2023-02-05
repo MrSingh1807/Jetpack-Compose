@@ -15,7 +15,7 @@ import androidx.navigation.NavController
 
 
 @Composable
-fun Task(navController: NavController? = null) {
+fun Task(navController: NavController? = null, item: String? = null) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -29,7 +29,7 @@ fun Task(navController: NavController? = null) {
         LazyColumn {
             var i = 0
             items((1..5).toList()) {
-                TaskCard("Details Item - ${++i}", navController,R.drawable.ic_task)
+                TaskCard("$item -> Details - ${++i}", navController,R.drawable.ic_task)
             }
         }
 
