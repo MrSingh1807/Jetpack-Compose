@@ -1,4 +1,4 @@
-package com.example.jetpackcompose.Fragments
+package com.example.jetpackcompose.Screens.Fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

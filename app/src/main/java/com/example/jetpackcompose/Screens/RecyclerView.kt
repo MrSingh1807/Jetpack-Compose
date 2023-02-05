@@ -24,9 +24,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun MainContent(){
+fun MainData(){
     // How you can update your Jetpack Compose UI whenever state of your application is changed
-    val user = User(1, "Mr Singh")
+    val user = User(
+        1, "Mr Singh")
     val users = remember {
         mutableStateListOf(user)
     }
@@ -35,7 +36,9 @@ fun MainContent(){
     ){
         UserList(users = users)
         Button(
-            modifier = Modifier.padding(24.dp).align(Alignment.BottomCenter),
+            modifier = Modifier
+                .padding(24.dp)
+                .align(Alignment.BottomCenter),
             onClick = {
                 users.add(User( 1, "Mr Singh"))
             }) {
@@ -92,5 +95,13 @@ fun UserCard() {
 
             }
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewMainData(){
+    Surface(modifier = Modifier.fillMaxSize()) {
+        MainData()
     }
 }
